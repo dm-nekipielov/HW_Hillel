@@ -8,6 +8,7 @@ flask = "*"
 faker = "*"
 pandas = "*"
 webargs = "*"
+requests = "*"
 
 [dev-packages]
 
