@@ -18,7 +18,7 @@ fake = Faker()
 
 @app.errorhandler(HTTPStatus.BAD_REQUEST)
 @app.errorhandler(HTTPStatus.UNPROCESSABLE_ENTITY)
-def error_hendler(error):
+def error_handler(error):
     headers = error.data.get("headers", None)
     messages = error.data.get("messages", ["Invalid request."])
 
@@ -40,7 +40,7 @@ def error_hendler(error):
 @use_kwargs(
     {
         "quantity": fields.Int(
-            missing=10,
+            load_default=10,
             validate=[validate.Range(min=1, max=1000)]
         )
     },
@@ -72,7 +72,7 @@ def generate_students(quantity):
 @use_kwargs(
     {
         "count": fields.Int(
-            missing=1,
+            load_default=1,
             validate=[validate.Range(min=1)]
         ),
         "currency": fields.Str(
