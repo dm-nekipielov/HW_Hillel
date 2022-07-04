@@ -76,7 +76,7 @@ def generate_students(quantity):
             validate=[validate.Range(min=1)]
         ),
         "currency": fields.Str(
-            missing="USD",
+            load_default="USD",
             validate=[validate.OneOf(currencies_list)]
         )
     },
