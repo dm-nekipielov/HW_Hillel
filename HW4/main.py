@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from webargs import fields
 from webargs.flaskparser import use_kwargs
 
@@ -29,7 +29,7 @@ def order_price(country):
         query += "GROUP BY invoices.BillingCountry"
 
     results = execute_query(query)
-    return "<br>".join(f'Country: {result[1]} <br> Sales: {result[0]} <br>' for result in results)
+    return render_template("order_price.html", results=results)
 
 
 @app.route("/tracks_info")
@@ -62,19 +62,14 @@ def get_all_info_about_track(track_ID):
     """
 
     if track_ID:
-        all_tracks_info_query += f"WHERE Country=={track_ID}"
+        all_tracks_info_query += f"WHERE tracks.TrackId={track_ID} GROUP BY tracks.TrackId"
     else:
         all_tracks_info_query += "GROUP BY tracks.TrackId"
 
     all_tracks_info = execute_query(all_tracks_info_query)
-    total_hours = execute_query(total_hours_query)
+    total_hours = execute_query(total_hours_query)[0][0]
 
-    # join all possible tables and show all possible info about all tracks
-    # as input track ID
-    # *
-    # show time of all tracks of all albums in hours
-    # use info about all tracks
-    return f"""Total time of all tracks: {total_hours[0][0]} hours.<br> {'<br>'.join(track for track in all_tracks_info)}"""
+    return render_template("tracks_info.html", all_tracks_info=all_tracks_info, total_hours=total_hours)
 
 
 if __name__ == '__main__':
