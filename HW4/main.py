@@ -22,11 +22,10 @@ def order_price(country):
             SELECT SUM(invoice_items.UnitPrice * invoice_items.Quantity) AS Sales, invoices.BillingCountry AS Country
             FROM invoices
             INNER JOIN invoice_items ON invoice_items.InvoiceId = invoices.InvoiceId
+            GROUP BY invoices.BillingCountry
     """
     if country:
-        query += f"WHERE Country=='{country}'"
-    else:
-        query += "GROUP BY invoices.BillingCountry"
+        query += f"HAVING Country=='{country}'"
 
     results = execute_query(query)
     return render_template("order_price.html", results=results)
