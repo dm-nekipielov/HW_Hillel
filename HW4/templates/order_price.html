@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sales by countries
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Country</th>
+            <th>Sales</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <th>{{ result[1] }}</th>
+            <th>{{ result[0] }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
