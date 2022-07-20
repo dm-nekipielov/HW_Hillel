@@ -53,8 +53,7 @@ class Parallelogram(Rectangle):
         return self.__dict__ == other.__dict__
 
     def square(self):
-        if __name__ == '__main__':
-            return self.width * self.height * math.sin(self.angle)
+        return self.width * self.height * math.sin(self.angle)
 
 
 class Triangle(Shape):
