@@ -29,6 +29,3 @@ class Group:
         return execute_query(query)
 
 
-g = Group('tyuiuy', '25.10.2022')
-g.add_to_db()
-print(g.get_group_id())

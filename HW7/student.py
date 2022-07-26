@@ -31,9 +31,3 @@ class Student(Person):
         execute_query(query)
 
 
-a = Student('hgj', 'cvcv', "25.07.2000")
-
-# s.add_to_db()
-print(*a.get_student_info())
-# print(a._is_exist())
-# print(s.initialization_student())

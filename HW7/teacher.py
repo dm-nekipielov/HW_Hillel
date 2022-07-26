@@ -18,6 +18,3 @@ class Teacher(Person):
                     WHERE first_name='{self.first_name}' AND last_name='{self.last_name}'"""
         execute_query(query)
 
-
-s = Teacher('Koney', 'Smitt', "25.07.2000")
-print(s.__str__())
